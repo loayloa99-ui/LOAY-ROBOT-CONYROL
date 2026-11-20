@@ -1,5 +1,5 @@
 name: Build LOAY ROBOT CONTROL APK
-on: workflow_dispatch: push: branches: - main
+on: workflow_dispatch:
 jobs: build: runs-on: ubuntu-latest
 steps:
   - name: Checkout
@@ -11,16 +11,12 @@ steps:
       distribution: temurin
       java-version: '17'
 
-  - name: Set up Gradle
-    uses: gradle/actions/setup-gradle@v4
-    with:
-      gradle-version: '8.7'
-
   - name: Set up Android SDK
     uses: android-actions/setup-android@v3
 
   - name: Build APK
-    run: gradle assembleDebug
+    run: |
+      gradle assembleDebug
 
   - name: Upload APK
     uses: actions/upload-artifact@v4
